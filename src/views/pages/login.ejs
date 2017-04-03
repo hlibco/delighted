@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <% include ../partials/head %>
+</head>
+<body>
+
+  <header>
+    <% include ../partials/header %>
+  </header>
+
+  <form method="POST" class="container">
+    <% if(error) { %>
+      <div class="alert alert-danger"><%= error %></div>
+    <% } %>
+
+    <input type="password" name="apiKey" placeholder="api key" value="OrQoGBNPsAriIbmCABlZwPYxzq7nGIuQ_" />
+
+    <button type="submit">Login</button>
+  </form>
+
+</body>
+</html>

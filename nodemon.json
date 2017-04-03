@@ -1,0 +1,18 @@
+{
+  "ignore": [
+    ".git",
+    "node_modules"
+  ],
+  "verbose": true,
+  "watch": [
+    "src",
+    "node_modules/alexa-bootstrap"
+  ],
+  "env": {
+    "NODE_ENV": "development",
+    "ALEXA_PORT": "3003",
+    "DEBUG": "delighted:*,alexa-bootstrap:*",
+    "DEBUG_COLORS": true
+  },
+  "exec": "node src/server.js"
+}

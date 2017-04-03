@@ -1,0 +1,98 @@
+{
+  "name": "delighted-alexa-skills",
+  "description": "Alexa Skills for Delighted",
+  "version": "0.1.0",
+  "author": "Felipe Hlibco <hlibco@gmail.com>",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:hlibco/delighted.git"
+  },
+  "bugs": "https://github.com/hlibco/delighted.git/issues",
+  "engines": {
+    "npm": ">=6"
+  },
+  "main": "./server",
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "pretest": "rimraf ./coverage && npm run lint",
+    "test": "NODE_ENV=test DEBUG=test,delighted:* DEBUG_COLORS=true ava",
+    "lint": "standard --verbose src/**/*.js tests/**/*.js | snazzy",
+    "cover": "nyc npm test",
+    "check": "nsp check",
+    "start": "nodemon",
+    "testing": "pm2 reload ecosystem.config.js --env test",
+    "staging": "pm2 reload ecosystem.config.js --env staging",
+    "production": "pm2 reload ecosystem.config.js --env production",
+    "deploy:staging": "pm2 deploy ecosystem.config.js staging --force",
+    "deploy:production": "pm2 deploy ecosystem.config.js production --force",
+    "deploy:staging:setup": "pm2 deploy ecosystem.config.js staging setup",
+    "deploy:production:setup": "pm2 deploy ecosystem.config.js production setup"
+  },
+  "pre-commit": "lint",
+  "ava": {
+    "files": [
+      "tests/**/*.js",
+      "!tests/**/_*.js"
+    ],
+    "concurrency": 5,
+    "failFast": true,
+    "verbose": true,
+    "tap": false
+  },
+  "nyc": {
+    "lines": 20,
+    "statements": 5,
+    "functions": 5,
+    "branches": 5,
+    "include": [
+      "src/**/*.js"
+    ],
+    "exclude": [
+      "src/**/_*.js"
+    ],
+    "reporter": [
+      "html",
+      "lcov",
+      "text-summary"
+    ],
+    "cache": true,
+    "all": true,
+    "check-coverage": true,
+    "report-dir": "./coverage"
+  },
+  "standard": {
+    "globals": [
+      "describe",
+      "it",
+      "expect"
+    ]
+  },
+  "dependencies": {
+    "alexa-bootstrap": "0.2.1",
+    "ava": "0.17.0",
+    "body-parser": "^1.17.1",
+    "confidence": "3.0.2",
+    "debug": "2.6.1",
+    "delighted": "^1.1.5-rc.2",
+    "dynasty": "0.2.6",
+    "ejs": "2.5.6",
+    "express": "4.14.1",
+    "express-session": "1.15.1",
+    "got": "6.7.1",
+    "hoek": "4.1.0",
+    "jsonwebtoken": "7.3.0",
+    "moment": "2.17.1",
+    "path": "0.12.7",
+    "querystring": "0.2.0"
+  },
+  "devDependencies": {
+    "dotenv": "4.0.0",
+    "nodemon": "1.11.0",
+    "nyc": "10.0.0",
+    "pre-commit": "1.2.2",
+    "rimraf": "2.6.1",
+    "snazzy": "5.0.0",
+    "standard": "8.6.0"
+  }
+}
